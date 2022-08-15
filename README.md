@@ -307,6 +307,14 @@ nms.on('donePlay', (id, StreamPath, args) => {
 ```js
 ......
 nms.run();
+
+nms.check('viewerConnect', async (args) => { // Same double as PreConnect
+  console.log('[NodeCheck on viewerConnect]', `args=${JSON.stringify(args)}`);
+  connect = await function(args) { return ? };
+
+  return connect ? true : false;
+});
+
 nms.check('preConnect', async (args) => {
   console.log('[NodeCheck on preConnect]', `args=${JSON.stringify(args)}`);
   connect = await function(args) { return ? };
