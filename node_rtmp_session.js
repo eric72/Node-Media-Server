@@ -1032,7 +1032,8 @@ class NodeRtmpSession {
     if (typeof invokeMessage.streamName !== "string") {
       return;
     }
-    this.publishStreamPath = "/" + this.appname + "/" + invokeMessage.streamName.split("?")[0];
+    // this.publishStreamPath = "/" + this.appname + "/" + invokeMessage.streamName.split("?")[0];
+    this.publishStreamPath = this.appname;
     this.publishArgs = QueryString.parse(invokeMessage.streamName.split("?")[1]);
     this.publishStreamId = this.parserPacket.header.stream_id;
     context.nodeEvent.emit("prePublish", this.id, this.publishStreamPath, this.publishArgs);
