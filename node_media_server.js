@@ -20,13 +20,7 @@ class NodeMediaServer {
   }
 
   async run() {
-    await Logger.setLogFile({
-      path: this.config.logging.file_path || '../logs',
-      output: this.config.logging.file_output || 'NONE'
-    });
-
-    Logger.setLogType(this.config.logging.shell_output || this.config.logType || 'NORMAL');
-
+    Logger.setLogType(this.config.logType);
     Logger.log(`Node Media Server v${Package.version}`);
 
     if (this.config.rtmp) {
