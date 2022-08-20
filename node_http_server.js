@@ -169,9 +169,9 @@ class NodeHttpServer {
         let socket = session instanceof NodeFlvSession || session instanceof NodeHlsSession ? session.req.socket : session.socket;
         context.stat.inbytes += socket.bytesRead;
         context.stat.outbytes += socket.bytesWritten;
-        if (session.req) {
-          context.hlsSessions.delete(session.req.params.key);
-        }
+        // if (session.req) {
+        //   context.hlsSessions.delete(session.req.params.key);
+        // }
       }
     });
   }
