@@ -67,15 +67,6 @@ class NodeFlvSession {
     Logger.log(`[${this.TAG} connect] id=${this.id} ip=${this.ip} args=${JSON.stringify(urlInfo.query)}`);
     context.nodeEvent.emit("preConnect", this.id, this.connectCmdObj);
 
-    let preConnect = await context.nodeCheck.run("viewerConnect", {
-      id: this.id,
-      eventName: "viewerConnect",
-      stream: {
-        streamPath: streamPath,
-        query: urlInfo.query,
-      },
-    });
-
     if (!this.isStarting) {
       this.stop();
       return;
