@@ -184,7 +184,7 @@ class NodeRtmpSession {
     this.isStarting = true;
   }
 
-  stop() {
+  async stop() {
     if (this.isStarting) {
       this.isStarting = false;
 
@@ -203,6 +203,14 @@ class NodeRtmpSession {
 
       Logger.log(`[rtmp disconnect] id=${this.id}`);
       context.nodeEvent.emit("doneConnect", this.id, this.connectCmdObj);
+      await context.nodeCheck.run("stopStreaming", {
+        id: this.id,
+        eventName: "stopStreaming",
+        stream: {
+          streamPath: this.playStreamPath,
+          query: this.playArgs,
+        },
+      });
 
       context.sessions.delete(this.id);
       this.socket.destroy();
