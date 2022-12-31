@@ -205,11 +205,7 @@ class NodeRtmpSession {
       context.nodeEvent.emit("doneConnect", this.id, this.connectCmdObj);
       await context.nodeCheck.run("stopStreaming", {
         id: this.id,
-        eventName: "stopStreaming",
-        stream: {
-          streamPath: this.playStreamPath,
-          query: this.playArgs,
-        },
+        eventName: "stopStreaming"
       });
 
       context.sessions.delete(this.id);
