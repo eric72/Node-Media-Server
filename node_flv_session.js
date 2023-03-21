@@ -57,7 +57,7 @@ class NodeFlvSession {
     context.sessions.set(this.id, this);
   }
 
-  async run() {
+  run() {
     let method = this.req.method;
     let urlInfo = URL.parse(this.req.url, true);
     let streamPath = urlInfo.pathname.split(".")[0];
@@ -67,7 +67,7 @@ class NodeFlvSession {
     Logger.log(`[${this.TAG} connect] id=${this.id} ip=${this.ip} args=${JSON.stringify(urlInfo.query)}`);
     context.nodeEvent.emit("preConnect", this.id, this.connectCmdObj);
 
-    await context.nodeCheck.run("viewerConnect", {
+    context.nodeCheck.run("viewerConnect", {
       id: this.id,
       eventName: "viewerConnect",
       stream: {
